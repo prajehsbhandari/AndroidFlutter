@@ -14,7 +14,7 @@ class User_API {
         url,
         data: user.toJson(),
       );
-      if (response = await dio.post(url, data: user.toJson(),
+      if (response = await dio.post(url, data: user.toJso(),
       );
       )
     }
