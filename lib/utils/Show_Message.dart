@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:motion_toast/motion_toast.dart';
 
 void displaySuccessMessage(BuildContext context, String message) {
@@ -9,8 +9,6 @@ void displaySuccessMessage(BuildContext context, String message) {
 }
 
 void displayErrorMessage(BuildContext context, String message) {
-  MotionToast.error(
-    enableAnimation: true,
-    description: Text(message),
-  ).show(context);
+  MotionToast.error(enableAnimation: true, description: Text(message))
+      .show(context);
 }

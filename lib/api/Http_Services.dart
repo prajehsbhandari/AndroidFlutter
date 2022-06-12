@@ -1,16 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:untitled/utils/Url.dart';
+import '../utils/url.dart';
 
-class Http_Services {
-  static final Http_Services _instance = Http_Services.internal();
-
-  factory Http_Services() => _instance;
-  Http_Services.internal();
+class HttpServices {
+  static final HttpServices _instance = HttpServices.internal();
+  factory HttpServices() => _instance;
+  HttpServices.internal();
 
   Dio? _dio;
   Dio getDioInstance() {
     if (_dio == null) {
-      return Dio(
+      return _dio = Dio(
         BaseOptions(
           baseUrl: baseUrl,
           connectTimeout: 5000,
@@ -21,72 +20,3 @@ class Http_Services {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,15 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:untitled/api/Http_Services.dart';
-import 'package:untitled/model/User.dart';
-import 'package:untitled/utils/Url.dart';
+import 'package:untitled/response/login_response.dart';
 
-class User_API {
+import '../model/user.dart';
+import '../utils/url.dart';
+
+class UserApi {
   Future<bool> registerUser(User user) async {
-    bool isLogin = false;
+    bool isSignup = false;
     Response response;
     var url = baseUrl + registerUrl;
-    var dio = Http_Services().getDioInstance();
+    var dio = HttpServices().getDioInstance();
     try {
       response = await dio.post(
         url,
@@ -17,6 +19,32 @@ class User_API {
       );
       if (response.statusCode == 200) {
         return true;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return isSignup;
+  }
+
+  Future<bool> login(String username, String password) async {
+    bool isLogin = false;
+    try {
+      var url = baseUrl + loginUrl;
+      var dio = HttpServices().getDioInstance();
+
+      var response = await dio.post(
+        url,
+        data: {
+          "username": username,
+          "password": password,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        LoginResponse loginResponse = LoginResponse.fromJson(response.data);
+        token = loginResponse.token;
+        debugPrint(token.toString());
+        isLogin = true;
       }
     } catch (e) {
       debugPrint(e.toString());

@@ -1,44 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:motion_toast/motion_toast.dart';
+import 'package:untitled/model/user.dart';
 import 'package:untitled/repository/user_repository.dart';
+import 'package:untitled/utils/show_message.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  _navigateToScreen(bool isLogin) {
-    if (isLogin) {
-      Navigator.pushNamed(context, '/home');
+  _registerUser(User user) async {
+    bool isSignup = await UserRepository().registerUser(user);
+    if (isSignup) {
+      _displayMessage(true);
     } else {
-      MotionToast.error(
-              description:
-                  const Text("Either Username or Password is incorrect"))
-          .show(context);
+      _displayMessage(false);
     }
   }
 
-  _login() async {
-    try {
-      UserRepository userRepository = UserRepository();
-      bool isLogin = await userRepository.login(
-          _emailController.text, _passwordController.text);
-      if (isLogin) {
-        _navigateToScreen(true);
-      } else {
-        _navigateToScreen(false);
-      }
-    } catch (e) {
-      MotionToast.error(
-        description: Text("Error: ${e.toString()}"),
-      ).show(context);
+  _displayMessage(bool isSignup) {
+    if (isSignup) {
+      displaySuccessMessage(context, "Register Success");
+      _emailController.clear();
+      _passwordController.clear();
+      _usernameController.clear();
+    } else {
+      displayErrorMessage(context, 'Register Failed');
     }
   }
 
@@ -50,17 +44,17 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Center(
-              child: Form(
-                key: _formKey,
+        child: Form(
+          key: _formKey,
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Center(
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
                     const Text(
-                      'Welcome Back',
+                      'Create New',
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     ),
@@ -71,14 +65,33 @@ class _LoginState extends State<Login> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/signup');
+                        Navigator.of(context).pushNamed('/login');
                       },
                       child: const Text(
-                        'Don\'t have an Account? Signup here',
+                        'Already Registered? Log in here',
                         style: TextStyle(color: Colors.grey),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Name',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _usernameController,
+                      decoration:
+                          const InputDecoration(border: OutlineInputBorder()),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your Name';
+                        }
+
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 8),
                     const Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -92,13 +105,13 @@ class _LoginState extends State<Login> {
                           const InputDecoration(border: OutlineInputBorder()),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter password';
+                          return 'Please enter Email';
                         }
 
                         return null;
                       },
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 8),
                     const Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -127,10 +140,17 @@ class _LoginState extends State<Login> {
                             primary: Colors.deepOrange),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            _login();
+                            User user = User(
+                              email: _emailController.text,
+                              username: _usernameController.text,
+                              password: _passwordController.text,
+                            );
+                            _registerUser(user);
+                          } else {
+                            return;
                           }
                         },
-                        child: const Text('Login'),
+                        child: const Text('Sign Up'),
                       ),
                     ),
                   ],

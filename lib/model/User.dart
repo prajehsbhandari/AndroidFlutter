@@ -6,15 +6,15 @@ class User {
   String? password;
   String? country;
 
-  User({
-    this.email,
-    this.address,
-    this.phone,
-    this.username,
-    this.password,
-    this.country,
-  });
+  User(
+      {this.email,
+      this.address,
+      this.phone,
+      this.username,
+      this.password,
+      this.country});
 
+//converting json file from server to an object in dart
   factory User.fromJson(Map<String, dynamic> json) => User(
         email: json["email"],
         address: json["address"],
@@ -24,6 +24,7 @@ class User {
         country: json["country"],
       );
 
+//converting the data to send into server in json
   Map<String, dynamic> toJson() => {
         "email": email,
         "address": address,
