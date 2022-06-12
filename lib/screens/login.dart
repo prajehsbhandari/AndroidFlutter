@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                       },
                       child: const Text(
                         'Don\'t have an Account? Signup here',
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.white30),
                       ),
                     ),
                     const SizedBox(height: 15),
@@ -123,8 +123,8 @@ class _LoginState extends State<Login> {
                       width: double.infinity,
                       height: 60,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.deepOrange),
+                        style:
+                            ElevatedButton.styleFrom(primary: Colors.redAccent),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _login();
