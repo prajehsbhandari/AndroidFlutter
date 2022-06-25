@@ -27,16 +27,24 @@ class _DashBoardState extends State<DashBoard> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
+                const SizedBox(height: 10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text(
-                      'Good Benefit',
-                      style: TextStyle(fontSize: 20),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/map');
+                      },
+                      child: const Text(
+                        'GB',
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 38,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                     SizedBox(
-                      height: 40,
-                      width: 200,
+                      height: 50,
+                      width: 250,
                       child: TextFormField(
                         decoration:
                             const InputDecoration(border: OutlineInputBorder()),
@@ -44,20 +52,24 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.search),
+                      icon: const Icon(
+                        Icons.search,
+                        size: 35,
+                        color: Colors.pink,
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 300,
+                  height: 265,
                   child: Image.network(
-                      'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170'),
+                      'https://www.xda-developers.com/files/2021/07/Best-accessories-for-gaming-laptops.jpg'),
                 ),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Top Categories',
+                    'Mobile Phones',
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
@@ -67,61 +79,61 @@ class _DashBoardState extends State<DashBoard> {
                   child: Row(
                     children: [
                       Container(
-                        height: 80,
-                        width: 100,
+                        height: 180,
+                        width: 200,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://www.yankodesign.com/images/design_news/2021/08/auto-draft/apple_concepts_iphone_one_03.jpg',
                           fit: BoxFit.fill,
                         ),
                       ),
                       const SizedBox(width: 20),
                       Container(
-                        height: 80,
-                        width: 100,
+                        height: 180,
+                        width: 200,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://oasis.opstatics.com/content/dam/oasis/page/2022/na/home/10-pro/10NA_Green_S_.jpg',
                           fit: BoxFit.fill,
                         ),
                       ),
                       const SizedBox(width: 20),
                       Container(
-                        height: 80,
-                        width: 100,
+                        height: 180,
+                        width: 200,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://www.telstra.com.au/content/dam/tcom/lego/2021/plans-devices/mobiles/samsung-galaxy-s22-series/header-desk-samsung-galaxy-s22-series-764x500-2x.jpg',
                           fit: BoxFit.fill,
                         ),
                       ),
                       const SizedBox(width: 20),
                       Container(
-                        height: 80,
-                        width: 100,
+                        height: 180,
+                        width: 200,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://media.wired.com/photos/6244999edd9582abaa390782/master/w_1600%2Cc_limit/OnePlus-10-Review-Back-Cameras-Gear.jpg',
                           fit: BoxFit.fill,
                         ),
                       ),
                       const SizedBox(width: 20),
                       Container(
-                        height: 80,
-                        width: 100,
+                        height: 180,
+                        width: 200,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://www.androidheadlines.com/wp-content/uploads/2022/06/Nothing-Phone-1-image-4.jpeg',
                           fit: BoxFit.fill,
                         ),
                       ),
                       const SizedBox(width: 20),
                       Container(
-                        height: 80,
-                        width: 100,
+                        height: 180,
+                        width: 200,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://i02.appmifile.com/429_operator_in/07/04/2022/ab9969f0cc2cab0e3067a47eb2f4b299.jpg',
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -146,7 +158,7 @@ class _DashBoardState extends State<DashBoard> {
                         width: 100,
                         decoration: BoxDecoration(border: Border.all()),
                         child: Image.network(
-                          'https://images.unsplash.com/photo-1648737154448-ccf0cafae1c2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170',
+                          'https://assets-prd.ignimgs.com/2021/12/14/dualsensethumbnail-1639494235948.png',
                           fit: BoxFit.fill,
                         ),
                       ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/model/user.dart';
-import 'package:untitled/repository/user_repository.dart';
-import 'package:untitled/utils/show_message.dart';
+
+import '../model/user.dart';
+import '../repository/user_repository.dart';
+import '../utils/show_message.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -120,6 +121,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     TextFormField(
+                      obscureText: true,
                       controller: _passwordController,
                       decoration:
                           const InputDecoration(border: OutlineInputBorder()),

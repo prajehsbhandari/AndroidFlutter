@@ -1,9 +1,22 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/dashboard.dart';
-import 'package:untitled/screens/login.dart';
-import 'package:untitled/screens/register.dart';
+
+import 'screens/dashboard.dart';
+import 'screens/login.dart';
+import 'screens/map.dart';
+import 'screens/register.dart';
 
 void main() {
+  AwesomeNotifications().initialize('resource://drawable/logo', [
+    NotificationChannel(
+        channelKey: "Basic",
+        channelName: "Basic Notification",
+        channelDescription: "This is High Priority",
+        defaultColor: Colors.amber,
+        importance: NotificationImportance.Max,
+        ledColor: Colors.white,
+        channelShowBadge: true)
+  ]);
   runApp(const MyApp());
 }
 
@@ -18,7 +31,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signup': (context) => const Register(),
         '/login': (context) => const Login(),
-        '/home': (context) => const DashBoard()
+        '/home': (context) => const DashBoard(),
+        '/map': (context) => const MapZone()
       },
     );
   }

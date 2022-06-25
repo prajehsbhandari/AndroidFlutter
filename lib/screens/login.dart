@@ -1,10 +1,12 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
-import 'package:untitled/repository/user_repository.dart';
+
+import '../repository/user_repository.dart';
+import '../utils/Url.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
-
   @override
   State<Login> createState() => _LoginState();
 }
@@ -14,14 +16,37 @@ class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  _navigateToScreen(bool isLogin) {
+  _checkNotificationEnabled() {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _checkNotificationEnabled();
+    super.initState();
+  }
+
+  _navigateToScreen(bool isLogin) async {
+    debugPrint(isLogin.toString());
+    debugPrint(token.toString());
     if (isLogin) {
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          channelKey: 'Basic',
+          id: 1,
+          title: 'ProGulf',
+          body: 'Logged In Successfully',
+        ),
+      );
       Navigator.pushNamed(context, '/home');
     } else {
       MotionToast.error(
-              description:
-                  const Text("Either Username or Password is incorrect"))
-          .show(context);
+        description: const Text("Either Username or Password is incorrect"),
+      ).show(context);
     }
   }
 
@@ -31,6 +56,7 @@ class _LoginState extends State<Login> {
       bool isLogin = await userRepository.login(
           _emailController.text, _passwordController.text);
       if (isLogin) {
+        debugPrint(token.toString());
         _navigateToScreen(true);
       } else {
         _navigateToScreen(false);
@@ -46,7 +72,6 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -57,35 +82,35 @@ class _LoginState extends State<Login> {
               child: Form(
                 key: _formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 10),
                     const Text(
-                      'Welcome Back',
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                      'Welcome To Good Benefit',
+                      style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepOrange),
                     ),
-                    const Text(
-                      'Account',
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/signup');
-                      },
-                      child: const Text(
-                        'Don\'t have an Account? Signup here',
-                        style: TextStyle(color: Colors.white30),
+                    const SizedBox(height: 20),
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Log In',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
                     const Align(
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Email',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
+                    const SizedBox(height: 10),
                     TextFormField(
                       controller: _emailController,
                       decoration:
@@ -98,15 +123,18 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
                     const Align(
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Password',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
+                    const SizedBox(height: 10),
                     TextFormField(
+                      obscureText: true,
                       controller: _passwordController,
                       decoration:
                           const InputDecoration(border: OutlineInputBorder()),
@@ -131,6 +159,16 @@ class _LoginState extends State<Login> {
                           }
                         },
                         child: const Text('Login'),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/signup');
+                      },
+                      child: const Text(
+                        'Don\'t have an Account? Signup here',
+                        style: TextStyle(color: Colors.grey, fontSize: 18),
                       ),
                     ),
                   ],
