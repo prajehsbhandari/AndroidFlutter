@@ -38,8 +38,8 @@ class _LoginState extends State<Login> {
         content: NotificationContent(
           channelKey: 'Basic',
           id: 1,
-          title: 'ProGulf',
-          body: 'Logged In Successfully',
+          title: 'Good Benefit',
+          body: 'Welcome, You have been Logged in sucessfully!!!',
         ),
       );
       Navigator.pushNamed(context, '/home');

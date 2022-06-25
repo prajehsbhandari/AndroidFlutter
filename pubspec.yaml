@@ -42,6 +42,8 @@ dependencies:
   motion_toast: ^2.1.9
   google_maps_flutter: ^2.1.8
   awesome_notifications: ^0.6.21
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.11
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:good_benefit/screens/mainscreen.dart';
 
-import 'screens/dashboard.dart';
 import 'screens/login.dart';
 import 'screens/map.dart';
 import 'screens/register.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signup': (context) => const Register(),
         '/login': (context) => const Login(),
-        '/home': (context) => const DashBoard(),
+        '/home': (context) => const MainScreen(),
         '/map': (context) => const MapZone()
       },
     );
