@@ -25,61 +25,79 @@ class _ProductSlideState extends State<ProductSlide> {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data != null) {
             List<Product> lstProduct = snapshot.data!.data!;
+            debugPrint(lstProduct[1].name.toString());
             return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 6,
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: 4,
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () => Navigator.of(context)
                       .pushNamed('/productinfo', arguments: lstProduct[index]),
                   child: Container(
-                      margin: const EdgeInsets.all(10),
-                      height: height * 0.08,
-                      width: width * 0.5,
-                      decoration: BoxDecoration(
-                        color: Colors.deepOrange,
-                        borderRadius: BorderRadius.circular(15),
+                    height: height * 0.32,
+                    margin: const EdgeInsets.all(10),
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20),
                       ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: height * 0.2,
-                            width: width * 0.6,
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.red,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.network(
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(width: width * 0.04),
+                        SizedBox(
+                          height: height * 0.2,
+                          width: width * 0.37,
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            child: Image(
+                              image: NetworkImage(
                                 'http://10.0.2.2:8080/${lstProduct[index].image}',
-                                fit: BoxFit.cover,
                               ),
+                              fit: BoxFit.fill,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(lstProduct[index].name.toString(),
+                        ),
+                        SizedBox(width: width * 0.1),
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: height * 0.04),
+                            SizedBox(
+                              width: width * 0.31,
+                              child: Text(lstProduct[index].name.toString(),
                                   style: textStyle),
-                              Text(
-                                'RS ${lstProduct[index].price}',
-                                style: textStyle,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Rs ${lstProduct[index].price}',
+                              style: textStyle,
+                            ),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              height: height * 0.12,
+                              width: width * 0.3,
+                              child: Center(
+                                child: Text(
+                                  lstProduct[index].description.toString(),
+                                  textAlign: TextAlign.left,
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            lstProduct[index].description.toString(),
-                            style: const TextStyle(
-                                fontSize: 16, color: Colors.white),
-                          ),
-                        ],
-                      )),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
             );

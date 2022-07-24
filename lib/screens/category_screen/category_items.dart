@@ -24,7 +24,7 @@ class _CategoryItemsState extends State<CategoryItems> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.red,
         title: Text(
           category.toString().toUpperCase(),
           style: const TextStyle(fontSize: 28),

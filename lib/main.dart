@@ -2,9 +2,9 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:good_benefit/screens/mainscreen.dart';
+import 'package:good_benefit/utils/detail_product_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'model/favourite.dart';
 import 'screens/login.dart';
 import 'screens/map.dart';
@@ -41,12 +41,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/signup',
+      initialRoute: '/login',
       routes: {
         '/signup': (context) => const Register(),
         '/login': (context) => const Login(),
         '/home': (context) => const MainScreen(),
-        '/map': (context) => const MapZone()
+        '/map': (context) => const MapZone(),
+        '/productinfo': (context) => const ProductDetail()
       },
     );
   }

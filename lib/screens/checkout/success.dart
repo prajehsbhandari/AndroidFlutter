@@ -16,7 +16,7 @@ class _SuccessState extends State<Success> {
   Widget build(BuildContext context) {
     final CartController controller = Get.find();
     return Scaffold(
-      backgroundColor: Colors.yellowAccent,
+      backgroundColor: Colors.greenAccent,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -28,7 +28,7 @@ class _SuccessState extends State<Success> {
                 borderRadius: BorderRadius.circular(20),
                 child: const Image(
                   image: NetworkImage(
-                      'https://media1.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif?cid=790b761107a4da3f199ed7f862c8bb909a649a8a238f13bf&rid=giphy.gif&ct=g'),
+                      'https://c.tenor.com/ovo4iV_CijkAAAAS/school-boy.gif'),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -38,17 +38,15 @@ class _SuccessState extends State<Success> {
           const Text(
             "Successfully Placed the Order",
             style: TextStyle(
-                fontSize: 28,
-                color: Colors.deepOrange,
-                fontWeight: FontWeight.bold),
+                fontSize: 28, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 30),
           SizedBox(
             height: 80,
-            width: double.infinity,
+            width: 300,
             child: ElevatedButton(
                 child: const Text(
-                  'Proceed to Home Screen',
+                  'Sh*t, I NEED MORE !',
                   style: TextStyle(fontSize: 24),
                 ),
                 onPressed: () {

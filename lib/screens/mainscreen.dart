@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:good_benefit/screens/cart_button.dart';
 import 'package:good_benefit/screens/dashboard.dart';
 import 'package:good_benefit/screens/favourite.dart';
-import 'package:good_benefit/screens/map.dart';
 import 'package:good_benefit/screens/profile.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,8 +14,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Widget> pageList = <Widget>[
     const DashBoard(),
-    const MapZone(),
     const Favourite(),
+    CartScreen(),
     const ProfileScreen()
   ];
   int _selectedIndex = 0;

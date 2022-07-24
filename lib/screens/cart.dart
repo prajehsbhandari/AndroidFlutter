@@ -48,31 +48,47 @@ class CartProductScreen extends StatelessWidget {
     width = size.width;
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage:
-                NetworkImage('http://10.0.2.2:8080/${product.image}'),
-          ),
-          SizedBox(width: width * 0.1),
-          Text(
-            product.name.toString(),
-          ),
-          SizedBox(width: width * 0.2),
-          IconButton(
+      child: Container(
+        color: Colors.white,
+        height: 110,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              height: 100,
+              child: Image(
+                  image: NetworkImage('http://10.0.2.2:8080/${product.image}')),
+            ),
+            Text(
+              product.name.toString(),
+              style: const TextStyle(fontSize: 24),
+            ),
+            IconButton(
               onPressed: () {
                 controller.removeProduct(product);
               },
-              icon: const Icon(Icons.remove_circle)),
-          Text(quantity.toString()),
-          IconButton(
-            onPressed: () {
-              controller.addProduct(product);
-            },
-            icon: const Icon(Icons.add_circle),
-          ),
-        ],
+              icon: const Icon(
+                Icons.remove_circle,
+                color: Colors.red,
+                size: 28,
+              ),
+            ),
+            Text(
+              quantity.toString(),
+              style: const TextStyle(fontSize: 24),
+            ),
+            IconButton(
+              onPressed: () {
+                controller.addProduct(product);
+              },
+              icon: const Icon(
+                Icons.add_circle,
+                color: Colors.green,
+                size: 28,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

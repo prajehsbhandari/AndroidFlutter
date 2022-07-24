@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:good_benefit/screens/mainscreen.dart';
 
 import '../../utils/controller.dart';
 import 'checkout/payment_scree.dart';
@@ -12,7 +13,7 @@ class CartTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 100,
-        color: Colors.deepOrange,
+        color: Colors.red,
         child: Column(
           children: [
             const SizedBox(height: 10),
@@ -27,7 +28,7 @@ class CartTotal extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Obx(() => Text(
-                      'Rs ' + controller.total,
+                      'Rs ${controller.total}',
                       style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.normal,
@@ -40,14 +41,20 @@ class CartTotal extends StatelessWidget {
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.white),
-                    onPressed: () {
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
+                  onPressed: () {
+                    if (controller.total != '0') {
                       Get.to(const PaymentScreen());
-                    },
-                    child: const Text(
-                      'Proceed to Checkout',
-                      style: TextStyle(color: Colors.deepOrange, fontSize: 28),
-                    )))
+                    }
+                    Get.to(const MainScreen());
+                  },
+                  child: Text(
+                    controller.total != '0'
+                        ? 'Proceed to Checkout'
+                        : 'Add Items to Cart First',
+                    style: const TextStyle(color: Colors.red, fontSize: 28),
+                  ),
+                ))
           ],
         ));
   }

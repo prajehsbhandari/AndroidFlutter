@@ -13,9 +13,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text(
+          'Profile',
+          style: TextStyle(fontSize: 28),
+        ),
         centerTitle: true,
         backgroundColor: Colors.red,
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder<UserResponse?>(
         future: UserRepository().userInfo(),
@@ -40,10 +44,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Container(
                         width: double.infinity,
                         height: 250,
-                        decoration: BoxDecoration(
-                            color: Colors.red[400],
+                        decoration: const BoxDecoration(
+                            color: Colors.green,
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(20))),
+                                BorderRadius.all(Radius.circular(20))),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
@@ -54,7 +58,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Text(
                                 'Details',
                                 style: TextStyle(
-                                    fontSize: 24, color: Colors.white),
+                                    fontSize: 28,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               )),
                               const SizedBox(height: 30),
                               const Text(
@@ -93,8 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 300,
                     height: 50,
                     child: ElevatedButton(
-                        style:
-                            ElevatedButton.styleFrom(primary: Colors.blueGrey),
+                        style: ElevatedButton.styleFrom(primary: Colors.red),
                         onPressed: () {
                           Navigator.of(context).popAndPushNamed('/login');
                         },

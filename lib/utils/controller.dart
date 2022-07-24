@@ -15,9 +15,9 @@ class MyController extends GetxController {
       items.value--;
     } else {
       Get.snackbar("Product", "Cannot Buy less than 1");
-      Icon(Icons.alarm);
+      const Icon(Icons.alarm);
       BlurStyle.normal;
-      Duration(seconds: 3);
+      const Duration(seconds: 3);
     }
   }
 }
@@ -31,7 +31,7 @@ class UserName extends GetxController {
 }
 
 class CartController extends GetxController {
-  var _product = {}.obs;
+  final _product = {}.obs;
 
   void addProduct(Product product) {
     if (_product.containsKey(product)) {
@@ -59,14 +59,19 @@ class CartController extends GetxController {
       .map((product) => product.key.price * product.value)
       .toList();
 
-  get total => _product.entries
-      // .map((product) => int.parse(product.key.price) * int.parse(product.value))
-      .map(
-        (product) => int.parse(product.key.price) * product.value,
-      )
-      .toList()
-      .reduce(
-        (value, element) => value + element,
-      )
-      .toString();
+  String get total {
+    try {
+      return _product.entries
+          .map(
+            (product) => num.parse(product.key.price).toInt() * product.value,
+          )
+          .toList()
+          .reduce(
+            (value, element) => value + element,
+          )
+          .toString();
+    } catch (error) {
+      return '0';
+    }
+  }
 }

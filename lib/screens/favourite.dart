@@ -33,10 +33,10 @@ class _FavouriteState extends State<Favourite> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.red,
         title: const Text(
           'Favourites',
-          style: TextStyle(fontSize: 26),
+          style: TextStyle(fontSize: 28),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -47,7 +47,7 @@ class _FavouriteState extends State<Favourite> {
           if (box.isEmpty) {
             return const Center(
               child: Text(
-                'Add Some Items to Your Favourites',
+                'Add Products',
                 style: TextStyle(fontSize: 20),
               ),
             );
@@ -56,55 +56,52 @@ class _FavouriteState extends State<Favourite> {
               itemCount: box.length,
               itemBuilder: (context, index) {
                 var data = box2.getAt(index)!;
-                return Container(
-                  margin: const EdgeInsets.all(10),
-                  height: height * 0.3,
-                  width: width * 1,
-                  decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      color: Colors.white),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: height * 0.25,
-                        child: Image(image: NetworkImage(data.image)),
-                      ),
-                      SizedBox(width: width * 0.03),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            data.name,
-                            style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.deepOrange),
-                          ),
-                          Text(
-                            'RS ' + data.price,
-                            style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: width * 0.03),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          onPressed: () => box2.deleteAt(index),
-                          icon: const Icon(
-                            Icons.delete,
-                            size: 36,
-                            color: Colors.red,
-                          ),
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Container(
+                    height: height * 0.2,
+                    width: width * 1,
+                    color: Colors.grey,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          height: height * 0.2,
+                          child: Image(image: NetworkImage(data.image)),
                         ),
-                      ),
-                    ],
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              data.name,
+                              style: const TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              'Rs ' + data.price,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            ElevatedButton(
+                              style:
+                                  ElevatedButton.styleFrom(primary: Colors.red),
+                              onPressed: () => box2.deleteAt(index),
+                              child: const Icon(
+                                Icons.delete,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: width * 0.03),
+                      ],
+                    ),
                   ),
                 );
               },

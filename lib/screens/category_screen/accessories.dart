@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../model/product.dart';
 import '../../repository/product_repository.dart';
 import '../../response/get_product_response.dart';
@@ -28,6 +27,7 @@ class _AccessoriesState extends State<Accessories> {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data != null) {
             List<Product> lstProduct = snapshot.data!.data!;
+
             for (int a = lstProduct.length - 1; a > -1; a--) {
               if (lstProduct[a].category != 'Accessories') {
                 lstProduct.removeAt(a);
@@ -50,7 +50,7 @@ class _AccessoriesState extends State<Accessories> {
                       margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         border: Border.all(),
-                        color: Colors.deepOrange,
+                        color: Colors.red,
                         borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         ),
@@ -72,9 +72,10 @@ class _AccessoriesState extends State<Accessories> {
                               ),
                             ),
                           ),
-                          SizedBox(height: height * 0.01),
+                          SizedBox(height: height * 0.02),
                           Text(lstProduct[index].name.toString(),
                               style: textStyle),
+                          SizedBox(height: height * 0.01),
                           Text(
                             lstProduct[index].price.toString(),
                             style: textStyle,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:good_benefit/screens/checkout/success.dart';
 
+import '../../utils/controller.dart';
+
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
 
@@ -15,42 +17,26 @@ class _PaymentScreenState extends State<PaymentScreen> {
   List lables = ['Esewa', 'Khalti', 'Cash On Delivery'];
   @override
   Widget build(BuildContext context) {
+    final CartController controller = Get.find();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.red,
         title: const Text('Payment Method'),
         centerTitle: true,
       ),
-      body: Column(children: <Widget>[
+      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         const SizedBox(height: 50),
-        ListTile(
-          title: const Text('Esewa'),
-          leading: Radio(
-            value: 'esewa',
-            groupValue: _site,
-            onChanged: (value) {
-              setState(() {
-                _site = value;
-              });
-            },
-          ),
-        ),
         const SizedBox(height: 20),
-        ListTile(
-          title: const Text('Khalti'),
-          leading: Radio(
-            value: 'khalti',
-            groupValue: _site,
-            onChanged: (value) {
-              setState(() {
-                _site = value;
-              });
-            },
-          ),
+        Text(
+          'Your Total is ${controller.total}',
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         ListTile(
-          title: const Text('COD'),
+          title: const Text(
+            'Confirm Payment',
+            style: TextStyle(fontSize: 24),
+          ),
           leading: Radio(
             value: 'cod',
             groupValue: _site,
@@ -63,14 +49,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         const SizedBox(height: 200),
         SizedBox(
-          height: 40,
-          width: 180,
+          height: 60,
+          width: 200,
           child: ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.deepOrange),
-              onPressed: () {
-                Get.to(() => const Success());
-              },
-              child: const Text('Pay')),
+            style: ElevatedButton.styleFrom(primary: Colors.red),
+            onPressed: () {
+              Get.to(() => const Success());
+            },
+            child: const Text(
+              'Confirm Payment',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
         )
       ]),
     );

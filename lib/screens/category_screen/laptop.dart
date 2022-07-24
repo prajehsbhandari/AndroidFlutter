@@ -50,7 +50,7 @@ class _LaptopState extends State<Laptop> {
                       margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         border: Border.all(),
-                        color: Colors.deepOrange,
+                        color: Colors.red,
                         borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         ),
@@ -72,9 +72,10 @@ class _LaptopState extends State<Laptop> {
                               ),
                             ),
                           ),
-                          SizedBox(height: height * 0.01),
+                          SizedBox(height: height * 0.02),
                           Text(lstProduct[index].name.toString(),
                               style: textStyle),
+                          SizedBox(height: height * 0.01),
                           Text(
                             lstProduct[index].price.toString(),
                             style: textStyle,
