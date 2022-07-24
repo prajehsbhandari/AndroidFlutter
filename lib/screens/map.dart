@@ -18,8 +18,8 @@ class _MapZoneState extends State<MapZone> {
         markerId: MarkerId(myLocation.toString()),
         position: myLocation,
         infoWindow: const InfoWindow(
-          title: 'ProGulf Lubricants',
-          snippet: 'AutoForceNepal',
+          title: 'Good Benefit',
+          snippet: 'everything good, every purchase benefit',
         ),
         icon: BitmapDescriptor.defaultMarker,
       ),
